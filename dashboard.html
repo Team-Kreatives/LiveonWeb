@@ -23,7 +23,7 @@
                 <li class="topper">Help</li>
 
                 <div>
-                    <button class="dera">Derayo Olayinka</button>
+                    <button class="dera" id="namee"></button>
                 </div>
             </ul>
         </div>
@@ -34,7 +34,7 @@
             <div class="welcome">
                 <div>
                     <h1>
-                        Welcome, Derayo
+                        Welcome, <span id="name"></span>
                     </h1>
                     <p>
                         We are so Glad that you believe in us and wants to embark on this journey with us. We are here
@@ -51,10 +51,20 @@
             </div>
 
 
-            <div class="det">
-                <h1>Profile Details</h1>
-                <p>Update your detail with us to get to know you better and serve you to the best of our knowledge.</p>
-                <button id="myBtn">Update Profile</button>
+            <div style="display: flex; justify-content: space-between;">
+                <div class="det">
+                    <h1>Profile Details</h1>
+                    <p>Update your detail with us to get to know you better and serve you to the best of our knowledge.</p>
+                    <button id="myBtn">Update Profile</button>
+                </div><div class="det">
+                    <h1>Create Will</h1>
+                    <p>Update your detail with us to get to know you better and serve you to the best of our knowledge.</p>
+                    <button id="myBtn">Update Profile</button>
+                </div><div class="det">
+                    <h1>Estate Management</h1>
+                    <p>Update your detail with us to get to know you better and serve you to the best of our knowledge.</p>
+                    <button id="myBtn">Update Profile</button>
+                </div>
             </div>
 
 
@@ -67,23 +77,23 @@
               <span class="close">&times;</span>
               <!-- <p>Some text in the Modal..</p> -->
 
-              <form action="" >
+              <form action="" id="submit">
                     <div class="formy">
                         <div class="form">
                             <p>First Name</p>
-                            <input type="text" placeholder="first-name">
+                            <input type="text" placeholder="first-name" name="first-name">
                         </div>
                     
                         <div class="form">
                             <p>Last Name</p>
-                            <input type="text" placeholder="last-name">
+                            <input type="text" placeholder="last-name" name="last-name">
                         </div>
                     </div>
 
                     <div class="formy">
                         <div class="form">
-                            <p>First Name</p>
-                            <input type="text" placeholder="first-name">
+                            <p>Birthday</p>
+                            <input type="date" placeholder="date" name="date">
                         </div>
                     
                         <!-- <div class="form">
@@ -93,41 +103,41 @@
                     </div>
                     <div class="formy">
                         <div class="form">
-                            <p>First Name</p>
-                            <input type="text" placeholder="first-name">
+                            <p>Address</p>
+                            <input type="text" placeholder="Address" name="address">
                         </div>
                     
                         <div class="form">
-                            <p>Last Name</p>
-                            <input type="text" placeholder="last-name">
+                            <p>Address 2(Optional)</p>
+                            <input type="text" placeholder="Address 2(Optional)" name="address2">
                         </div>
                     </div>
                     <div class="formy">
                         <div class="form">
-                            <p>First Name</p>
-                            <input type="text" placeholder="first-name">
+                            <p>City</p>
+                            <input type="text" placeholder="City" name="city">
                         </div>
                     
                         <div class="form">
-                            <p>Last Name</p>
-                            <input type="text" placeholder="last-name">
+                            <p>State</p>
+                            <input type="text" placeholder="State" name="state">
                         </div>
                     </div>
                     <div class="formy">
                         <div class="form">
-                            <p>First Name</p>
-                            <input type="text" placeholder="first-name">
+                            <p>Zip/Postal code (Optional)</p>
+                            <input type="number" placeholder="number" name="postal">
                         </div>
                     
                         <div class="form">
-                            <p>Last Name</p>
-                            <input type="text" placeholder="last-name">
+                            <p>Phone number</p>
+                            <input type="number" placeholder="number" name="number">
                         </div>
                     </div>
                     <div class="formy">
                         <div class="form">
-                            <p>First Name</p>
-                            <input type="text" placeholder="first-name">
+                            <p>Email Address</p>
+                            <input type="email" placeholder="Derayolayinka02@gmail.com" name="email">
                         </div>
                     
                         <!-- <div class="form">
@@ -193,6 +203,69 @@
     </section>
     <!-- end footer  -->
     <script src="./js/main.js"></script>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+        import { getAuth,  onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyCIKlgBFTRs2u2qBzZaZqoFhSjykRkk71Y",
+          authDomain: "liveon-4fa75.firebaseapp.com",
+          databaseURL: "https://liveon-4fa75-default-rtdb.firebaseio.com",
+          projectId: "liveon-4fa75",
+          storageBucket: "liveon-4fa75.appspot.com",
+          messagingSenderId: "641102602271",
+          appId: "1:641102602271:web:876e657551075239b0b52a",
+          measurementId: "G-9RQS587BPM"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const analytics = getAnalytics(app);
+          const auth = getAuth();
+        
+      console.log('i8u87');
+      
+      onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    console.log(uid, user.displayName);
+    const el =  document.querySelector('#name').innerHTML = user.displayName
+    const ela =  document.querySelector('#namee').innerHTML = user.displayName
+console.log(el);
+  } else {
+    
+  }
+});
+ 
+const form = document.querySelector('#submit')
+form.addEventListener('submit', async(e)=>{
+    e.preventDefault()
+    console.log(e.target[1].value);
+    set(ref(database, 'users'), {
+        firstName: e.target[0].value,
+  lastName: e.target[1].value,
+  date: e.target[2].value,
+  address: e.target[3].value,
+  address2: e.target[4].value,
+  city: e.target[5].value,
+  state: e.target[6].value,
+    postal: e.target[7].value,
+  number: e.target[8].value,
+  email: e.target[9].value,
+  });
+
+  alert('profile updated!');
+    window.location.replace("./document.html");                                                                                                                                                                     
+} )
+
+                                                
+        </script>
 </body>
 
 </html>

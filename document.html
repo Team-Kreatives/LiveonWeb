@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Document</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./document.css">
 </head>
@@ -23,7 +23,7 @@
                 <li class="topper">Help</li>
 
                 <div>
-                    <button class="dera">Derayo Olayinka</button>
+                    <button class="dera" id="nam"></button>
                 </div>
             </ul>
         </div>
@@ -79,7 +79,47 @@
         </div>
     </section>
     <!-- end footer  -->
-    <script src="./js/main.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+        import { getAuth,  onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyCIKlgBFTRs2u2qBzZaZqoFhSjykRkk71Y",
+          authDomain: "liveon-4fa75.firebaseapp.com",
+          databaseURL: "https://liveon-4fa75-default-rtdb.firebaseio.com",
+          projectId: "liveon-4fa75",
+          storageBucket: "liveon-4fa75.appspot.com",
+          messagingSenderId: "641102602271",
+          appId: "1:641102602271:web:876e657551075239b0b52a",
+          measurementId: "G-9RQS587BPM"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const analytics = getAnalytics(app);
+          const auth = getAuth();
+        
+      console.log('i8u87');
+      
+      onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    console.log(uid, user.displayName);
+    const el =  document.querySelector('#nam').innerHTML = user.displayName
+    
+console.log(el);
+  } else {
+    
+  }
+});
+ 
+
+                                                
+        </script>
 </body>
 
 </html>
